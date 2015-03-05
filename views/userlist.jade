@@ -1,0 +1,37 @@
+extends layout
+block content
+	link(rel='stylesheet', href='/stylesheets/jquery.jnotify.css')
+	link(rel='stylesheet', href='/stylesheets/home.css')
+	.container
+		h2= uid
+		.row
+			.col-md-2.col-sm-2
+				.navB
+					ul.nav.nav-pills.nav-stacked
+						li
+							a(href="/home") 首页
+						li
+							a(href="/pro") 个人资料
+						li.active
+							a(href="/userlist") 关注更多
+						li
+							a(href="/logout") 退出
+			.col-md-8.col-sm-8
+				h2 用户列表
+				ul.listUser
+					for usr in userlist
+						li
+							img.img-circle(src="img/#{usr.Uimages}",alt="头像")
+							.detailUser
+								h3= usr.Ualais
+								if usr.isatt
+									a.js_rm_att(url="/userlist/removeAtt",uid="#{usr._id}") 取消关注
+								else
+									a.js_ad_att(url="/userlist/addAtt",uid="#{usr._id}") 加关注
+			.col-md-2.col-sm-2
+				.U-info
+					.uImg
+						img(src="img/#{user.Uimages}",alt="用户头像")
+					h3= user.Ualais
+	script(type="text/javascript",src="javascripts/jquery.jnotify.js")
+	script(type="text/javascript",src="javascripts/userlist.js")

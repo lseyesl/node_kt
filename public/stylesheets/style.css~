@@ -1,0 +1,21 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.listUser {}
+.listUser li {float:left;width:20%;text-align:center;}
+.listUser img {width:80%;display:block;margin:0 auto;}
+.listUser a {cursor:pointer;}
+
+.mt10 {margin-top:10px;}
+.pt10 {padding-top:10px;}
+.bgf {background-color:#fff;}
+.none {display:none;}
+.content {background:#fff;padding:10px 20px;border:1px solid #ddd;border-top:none;}
+.nav li {cursor:pointer;}
+input[type=file]{border:0;-webkit-box-shadow:none;box-shadow:0;}

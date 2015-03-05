@@ -1,0 +1,105 @@
+extends layout
+block content
+	link(rel='stylesheet', href='/stylesheets/jquery.jnotify.css')
+	link(rel='stylesheet', href='/stylesheets/home.css')
+	.container
+		h2= uid
+		.row
+			.col-md-2.col-sm-2
+				.navB
+					ul.nav.nav-pills.nav-stacked
+						li
+							a(href="/home") 首页
+						li.active
+							a(href="/pro") 个人资料
+						li
+							a(href="/userlist") 关注更多
+						li
+							a(href="/logout") 退出
+			.col-md-10.col-sm-10
+				ul.nav.nav-tabs.js_tit
+					li.active
+						a 编辑个人信息
+					li
+						a 修改密码
+					li
+						a 修改头像
+				ul.js_content.content
+					li
+						form.form-register(action="/pro/editUser",method="post")
+							.row.mt10
+								.col-md-4.col-sm-4
+									label(for="Ualais") 用户昵称
+								.col-md-8.col-sm-8
+									input.form-control(name="Ualais",type="text",placeholder="用户昵称",value="#{user.Ualais}")
+							.row.mt10
+								.col-md-4.col-sm-4
+									label(for="Ulogn") 邮箱
+								.col-md-8.col-sm-8
+									input.form-control(name="Ulogn",type="email",placeholder="邮箱",value="#{user.Ulogn}")
+							.row.mt10
+								.col-md-4.col-sm-4
+									label(for="Usex") 性别
+								.col-md-8.col-sm-8
+									select.form-control(name="Usex",Usex="#{user.Usex}")
+										if (user.Usex==0)
+											option(value="0",selected="selected") 女
+											option(value="1") 男
+											option(value="2") 其他
+										else 
+											if(user.Usex==1)
+												option(value="0") 女
+												option(value="1",selected="selected") 男
+												option(value="2") 其他
+											else
+												if(user.Usex==2)
+													option(value="0") 女
+													option(value="1") 男
+													option(value="2",selected="selected") 其他
+							.row.mt10
+								.col-md-4.col-sm-4
+									label(for="Uinfo") 自我介绍
+								.col-md-8.col-sm-8
+									textarea.form-control(name="Uinfo",placeholder="自我介绍")= user.Uinfo
+							.row.text-center.mt10
+								button.btn.btn-lg.btn-primary.js_save(type="button") 保存
+					li.none
+						form.form-register(action="/pro/editPwd",method="post")
+							.row.mt10
+								.col-md-4.col-sm-4
+									label(for="Upwd") 原密码
+								.col-md-8.col-sm-8
+									input.form-control(name="Upwd",type="password",placeholder="密码",value="")
+							.row.mt10
+								.col-md-4.col-sm-4
+									label(for="NUpwd") 新密码
+								.col-md-8.col-sm-8
+									input.form-control(name="nUpwd",type="password",placeholder="密码",value="")
+							.row.mt10
+								.col-md-4.col-sm-4
+									label(for="Nupwd2")	确定新密码
+								.col-md-8.col-sm-8
+									input.form-control(name="nUpwd2",type="password",placeholder="密码",value="")
+							.row.text-center.mt10
+								button.btn.btn-lg.btn-primary.js_save(type="button") 保存
+					li.none
+						form.form-register(action="/pro/editUpic",method="post",enctype="multipart/form-data")
+							.row.mt10
+								.col-md-4.col-sm-4
+									label(for="") 用户头像
+								.col-md-8.col-sm-8
+									img(src="img/#{user.Uimages}",id="Uimg")
+							.row.mt10
+								.col-md-4.col-sm-4
+									label(for="") 上传头像
+								.col-md-8.col-sm-8
+									input.form-control.js_img(id="fulAvatar",name="fulAvatar",type="file",placeholder="上传",value="上传")
+							.row.text-center.mt10
+								button.btn.btn-lg.btn-primary.js_save2(type="button") 保存
+									
+							
+	script(type="text/javascript",src="javascripts/jquery.jnotify.js")
+	script(type="text/javascript",src="javascripts/jquery.ui.widget.js")
+	script(type="text/javascript",src="javascripts/jquery.iframe-transport.js")
+	script(type="text/javascript",src="javascripts/jquery.fileupload.js")
+	script(type="text/javascript",src="javascripts/pro.js")
