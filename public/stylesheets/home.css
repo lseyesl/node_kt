@@ -12,8 +12,14 @@ body {background:#f7f7f9;}
 .listCtxt li h3 {margin-top:0px;line-height:20px;color:#333;}
 .listUimg {border-radius:100%;width:50px;height:50px;}
 .listCtxt li p {line-height:24px;word-wrap:break-word;}
+.listCtxt li li {border:0;border-bottom:1px dashed #ddd;}
+.listCtxt li li em.blue {font-weight:bold;font-style:normal;color:#55ACF7;}
 .date-publish {color:#888;}
 
 .U-info {}
 .U-info h3 {text-align:center;}
+
+.left {float:left;}
+.userInfo {overflow:hidden;zoom:1;font-size:16px;margin-top:5px;}
+.userInfo div {padding-left:100px;}
 

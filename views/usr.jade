@@ -1,0 +1,60 @@
+extends layout
+block content
+  link(rel='stylesheet', href='/stylesheets/jquery.jnotify.css')
+  link(rel='stylesheet', href='/stylesheets/home.css')
+  .container
+    .navB
+     ul.nav.nav-pills
+      li.active
+       a(href="/home") 首页
+      li
+       a(href="/pro") 个人资料
+      li
+       a(href="/userlist") 关注更多
+      li
+       a(href="/logout") 退出
+    h2
+     img(src="/img/#{arr_user.Uimages}")
+     span= arr_user.Ualais
+     div.userInfo
+      span.left用户介绍：
+      p= arr_user.Uinfo
+     div.userInfo
+      span.left注册时间：
+      p= arr_user.Udatetime
+    ul.listCtxt
+     for arr_msg in arr_message
+      li(id="#{arr_msg._id}",uid="#{arr_user._id}")
+        img.pull-left.listUimg(src="/img/#{arr_user.Uimages}",alt="头像")
+        .detailCtxt.pl60.js_copy_txt
+         h3= arr_user.Ualais
+         p= arr_msg.Mcontent
+          if arr_msg.orgin_msg!=null
+           .org_msg.js_copy_txt2
+           em= arr_msg.orgin_msg.Ualais
+           span= arr_msg.orgin_msg.Rcontent
+           .date-publish= arr_message.Mdatetime
+         .row
+          .col-md-4.col-sm-4.text-center
+           a.js_copy(href="javascript:void(0)") 转发
+          .col-md-4.col-sm-4.text-center
+           a.js_reply_opt(href="javascript:void(0)") 评论
+          .col-md-4.col-sm-4.text-center
+           if arr_message.isLike
+            a.glyphicon.glyphicon-heart.js_rm_z(href="javascript:void(0)",title="点赞")
+           else
+            a.glyphicon.glyphicon-heart-empty.js_add_z(href="javascript:void(0)",title="点赞")
+           .reply.none
+            .row
+             .col-md-2.col-sm-2
+             .col-md-6.col-sm-6
+              input.form-control.js_reply_txt(type="text")
+             .col-md-2.col-sm-2
+              input.btn.btn-primary.js_reply(type="submit",value="评论")
+             .col-md-2.col-sm-2
+            .row
+             .col-md-2.col-sm-2
+             .col-md-6.col-sm-6
+              ul.mt10.js_reply_list
+             .col-md-2.col-sm-2
+  

@@ -13,12 +13,13 @@ db = monk('localhost:27017/myWb');
 var formidable = require('formidable');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var usr = require('./routes/usr');
 var login = require('./routes/login');
 var register = require('./routes/register');
 var home = require('./routes/home');
 var userlist = require('./routes/userlist');
 var pro = require('./routes/pro'); 
+var test = require('./routes/test');
 
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
@@ -55,14 +56,14 @@ app.use(session({
 }));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/usr', usr);
 app.use('/login', login);
 app.use('/register',register);
 app.use('/home', home);
 app.use('/userlist',userlist);
 app.use('/pro',pro);
 app.use('/img',express.static(path.join(__dirname, 'public/images')));
-
+app.use('/test',test);
 /*
 app.use(multer({
 	dest:'./public/images/uavatar',

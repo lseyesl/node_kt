@@ -1,0 +1,69 @@
+var express = require('express');
+var router = express.Router();
+
+/* GET users listing. */
+router.get('/:id', function(req, res, next) {
+	Aho(req,res,next);
+	var id=req.params.id;
+	var db_user=db.get('user');
+	var db_msg=db.get('message');
+	var db_copy=db.get('copy');
+	var arr_user=null;
+	var arr_message=null;
+	db_user.find({'_id':id},function(err,docs){
+		if(err){
+			res.send('失败');
+		}else{
+			arr_user=docs;
+			ab_msg.find({'Uid':id},function(err,_msg){
+				if(err){
+					res.send('失败');
+				}else{
+					arr_mssage=_msg;
+					var Num=0;
+					if(arr_mssage.length==0){
+						res.send(arr_user.Ualais+'的微薄',arr_user,arr_msg);
+					}
+					for(var i=0;i<arr_mssage.length;i++){
+						(function(num){
+							var ms=arr_mssage[num];
+							db_copy.find({'Mid':ms['_id']},function(err,copy){
+								if(err){
+									res.send('失败');
+								}else{
+									if(copy.length>0){
+										db_msg.find({'_id':copy[0]['CMid']},function(err,doc){
+											if(err){
+												res.send('失败');
+											}else{
+												db_user.find({'_id':doc[0]['Uid']},function(err,us){
+													if(err){
+															res.send('失败');															
+													}else{
+															arr_mssage[num]['orgin_msg']={'Ualais':us[0]['Ualais'],'Rcontent':doc[0]['Rcontent']};
+															Num++;
+															if(Num==arr_mssage.length){
+																res.send(arr_user.Ualais+'的微薄',arr_user,arr_msg);
+															}
+													}
+												})
+											}
+										})
+									}else{
+										Num++;
+										if(Num==arr_mssage.length){
+											res.send(arr_user.Ualais+'的微薄',arr_user,arr_msg);
+										}	
+									}
+								}
+							})
+						})(i)
+					}
+				}
+			})
+		}
+	})
+	res.send();
+});
+
+module.exports = router;

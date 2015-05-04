@@ -1,0 +1,67 @@
+extends layout
+block content
+	link(rel='stylesheet', href='/stylesheets/jquery.jnotify.css')
+	link(rel='stylesheet', href='/stylesheets/home.css')
+	.container
+		h2= uid
+		.row
+			.col-md-2.col-sm-2
+				.navB
+					ul.nav.nav-pills.nav-stacked
+						li.active
+							a(href="/home") 首页
+						li
+							a(href="/pro") 个人资料
+						li
+							a(href="/userlist") 关注更多
+						li
+							a(href="/logout") 退出
+			.col-md-8.col-sm-8
+				.msgPlish
+					form(action="/home/publish",method="post")
+						textarea.form-control(name="Mcontent",row=4)
+						input.btn.btn-primary.js_publish(type="button",value="发表",data-loading-text="稍等")
+					ul.listCtxt
+						for wbmsg in wblist
+							li(id="#{wbmsg._id}",uid="#{wbmsg.Uid}")
+								img.pull-left.listUimg(src="img/#{wbmsg.Uimages}",alt="头像")
+								.detailCtxt.pl60.js_copy_txt
+									h3= wbmsg.Ualais
+									p= wbmsg.Mcontent
+									if wbmsg.orgin_msg!=null
+										.org_msg.js_copy_txt2
+											em= wbmsg.orgin_msg.Ualais
+											span= wbmsg.orgin_msg.Rcontent
+									.date-publish=wbmsg.Mdatetime
+								.row
+									.col-md-4.col-sm-4.text-center
+										a.js_copy(href="javascript:void(0)") 转发
+									.col-md-4.col-sm-4.text-center
+										a.js_reply_opt(href="javascript:void(0)") 评论
+									.col-md-4.col-sm-4.text-center
+										if wbmsg.isLike
+											a.glyphicon.glyphicon-heart.js_rm_z(href="javascript:void(0)",title="点赞")
+										else
+											a.glyphicon.glyphicon-heart-empty.js_add_z(href="javascript:void(0)",title="点赞")
+								.reply.none
+									.row
+										.col-md-2.col-sm-2
+										.col-md-6.col-sm-6
+											input.form-control.js_reply_txt(type="text")
+										.col-md-2.col-sm-2
+											input.btn.btn-primary.js_reply(type="submit",value="评论")
+										.col-md-2.col-sm-2
+									.row
+										.col-md-2.col-sm-2
+										.col-md-6.col-sm-6
+											ul.mt10.js_reply_list
+										.col-md-2.col-sm-2
+			.col-md-2.col-sm-2
+				.U-info
+					.uImg
+						img(src="img/#{user.Uimages}",alt="用户头像")
+					h3= user.Ualais
+	script(type="text/javascript",src="javascripts/jquery.jnotify.js")
+	link(rel='stylesheet', href='javascripts/dialog/ui-dialog.css')
+	script(type="text/javascript",src="javascripts/dialog/dialog.js")
+	script(type="text/javascript",src="javascripts/home.js")

@@ -18,6 +18,8 @@
     "express-session":"1.9.1",
     "connect-mongo":"0.4.1",
     "connect-flash":"0.1.1",
-    "formidable":"1.0.17"
+    "formidable":"1.0.17",
+    "async":"*",
+    "dateformat":"*"
   }
 }
