@@ -22,6 +22,12 @@ block content
      div.userInfo
       span.left注册时间：
       p= arr_user.Udatetime
+     if usr.id==arr_user._id
+     	div.userInfo
+     		if usr.isatt
+				a.js_rm_att(url="/userlist/removeAtt",uid="#{usr._id}") 取消关注
+			else
+				a.js_ad_att(url="/userlist/addAtt",uid="#{usr._id}") 加关注
     ul.listCtxt
      for arr_msg in arr_message
       li(id="#{arr_msg._id}",uid="#{arr_user._id}")
@@ -57,4 +63,6 @@ block content
              .col-md-6.col-sm-6
               ul.mt10.js_reply_list
              .col-md-2.col-sm-2
+
+    script(type="text/javascript",src="javascripts/userlist.js")
   

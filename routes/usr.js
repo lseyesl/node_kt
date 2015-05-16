@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
 	//var id=req.originalUrl.split('/')[2];
 	//if(id==''||id==undefined){
 	var id=req.session.user['_id'];	
+  var usr=req.seeion.user;
 	//}
 	var db_user=db.get('user');
 	var db_msg=db.get('message');
@@ -43,7 +44,7 @@ router.get('/', function(req, res, next) {
 					console.log(arr_message.length,'arr_message');
 					if(arr_message.length==0){
 						console.log(arr_user,arr_message);
-						res.render('usr',{title:arr_user.Ualais+'的微薄',arr_user:arr_user,arr_message:arr_message});
+						res.render('usr',{title:arr_user.Ualais+'的微薄',usr:usr,arr_user:arr_user,arr_message:arr_message});
 					}else{
 						console.log(4);
 						for(var i=0;i<arr_message.length;i++){
@@ -67,7 +68,7 @@ router.get('/', function(req, res, next) {
 																Num++;
 																if(Num==arr_message.length){
 																	console.log('over2');
-																	res.render('usr',{title:arr_user.Ualais+'的微薄',arr_user:arr_user,arr_message:arr_message});
+																	res.render('usr',{title:arr_user.Ualais+'的微薄',usr:usr,arr_user:arr_user,arr_message:arr_message});
 																}
 														}
 													})
@@ -78,7 +79,7 @@ router.get('/', function(req, res, next) {
 											if(Num==arr_message.length){
 												console.log('over');
 												console.log(arr_user,arr_message);
-												res.render('usr',{title:arr_user.Ualais+'的微薄',arr_user:arr_user,arr_message:arr_message});
+												res.render('usr',{title:arr_user.Ualais+'的微薄',usr:usr,arr_user:arr_user,arr_message:arr_message});
 											}	
 										}
 									}
@@ -99,6 +100,7 @@ router.get('/:id', function(req, res, next) {
 	//console.log(req.params.id,req.params,req);
 	//var id = id;
 	var id=req.originalUrl.split('/')[2];
+	var usr=req.seeion.user;
 	var db_user=db.get('user');
 	var db_msg=db.get('message');
 	var db_copy=db.get('copy');
@@ -129,7 +131,7 @@ router.get('/:id', function(req, res, next) {
 					console.log(arr_message.length,'arr_message');
 					if(arr_message.length==0){
 						console.log(arr_user,arr_message);
-						res.render('usr',{title:arr_user.Ualais+'的微薄',arr_user:arr_user,arr_message:arr_message});
+						res.render('usr',{title:arr_user.Ualais+'的微薄',usr:usr,arr_user:arr_user,arr_message:arr_message});
 					}else{
 						console.log(4);
 						for(var i=0;i<arr_message.length;i++){
@@ -153,7 +155,7 @@ router.get('/:id', function(req, res, next) {
 																Num++;
 																if(Num==arr_message.length){
 																	console.log('over2');
-																	res.render('usr',{title:arr_user.Ualais+'的微薄',arr_user:arr_user,arr_message:arr_message});
+																	res.render('usr',{title:arr_user.Ualais+'的微薄',usr:usr,arr_user:arr_user,arr_message:arr_message});
 																}
 														}
 													})
@@ -164,7 +166,7 @@ router.get('/:id', function(req, res, next) {
 											if(Num==arr_message.length){
 												console.log('over');
 												console.log(arr_user,arr_message);
-												res.render('usr',{title:arr_user.Ualais+'的微薄',arr_user:arr_user,arr_message:arr_message});
+												res.render('usr',{title:arr_user.Ualais+'的微薄',usr:usr,arr_user:arr_user,arr_message:arr_message});
 											}	
 										}
 									}

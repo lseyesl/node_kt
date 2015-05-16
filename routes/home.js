@@ -312,19 +312,24 @@ router.post('/get_reply',function(req, res ,next){
 		}else{
 			var N=0
 			for(var i in docs){
-				db_user.find({'_id':docs[i]['Uid']},function(err,doc){
-					if(err){
-						res.send({relt:'falie',data:null});
-					}else{
-						docs[i]['Ualais']=doc[0]['Ualais'];
-					}
-					N++;
-				})
+				var uid=docs[i]['Uid'];
+				(function(uid,i){
+					db_user.find({'_id':uid},function(err,doc){
+						if(err){
+							res.send({relt:'falie',data:null});
+						}else{
+							docs[i]['Ualais']=doc[0]['Ualais'];
+						}
+						N++;
+					})
+
+				})(uid,i);
+				
 			}
 			setTimeout(act,100);
 			function act(){
 				if(N==docs.length){
-						res.send({relt:'falie',data:docs});	
+						res.send({relt:'succ',data:docs});	
 				}else{
 					setTimeout(act,100);
 				}
