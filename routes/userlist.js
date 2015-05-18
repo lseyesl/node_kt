@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
 	var db_user=null;
 	var db_attention=null;
 	var user_result=[];
+	//获取到用户的列表
 	db.get('user').find({},function(err,docs){
 		db_user=docs;
 		db.get('attention').find({'Uid':s_user._id},function(err,docs){

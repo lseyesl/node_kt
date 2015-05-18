@@ -32,10 +32,11 @@ $(function(){
 	})
 
 
-	$('.js_add_z').on('click',function(){
+	$('.listCtxt li').on('click','.js_add_z',function(){
 		var li=$(this).parents('li');
 		var id=li.attr('id');
 		var cuid=li.attr('Uid');
+		var that = $(this);
 		$.ajax({
 			url:"/home/addz",
 			type:"POST",
@@ -45,17 +46,18 @@ $(function(){
 				$.jnotify(data,1500);
 				if(data=='成功'){
 					li.find('.glyphicon-heart-empty').addClass('glyphicon-heart').removeClass('glyphicon-heart-empty');
-					$(this).addClass('js_rm_z').removeClass('js_add_z');
+					that.addClass('js_rm_z').removeClass('js_add_z');
 				}
 			}
 		})
 		return false;
 	})
 
-	$('.js_rm_z').on('click',function(){
+	$('.listCtxt li').on('click','.js_rm_z',function(){
 		var li=$(this).parents('li');
 		var id=li.attr('id');
 		var cuid=li.attr('Uid');
+		var that=$(this);
 		$.ajax({
 			url:"/home/rmz",
 			type:"POST",
@@ -65,7 +67,7 @@ $(function(){
 				$.jnotify(data,1500);
 				if(data=='成功'){
 					li.find('.glyphicon-heart').removeClass('glyphicon-heart').addClass('glyphicon-heart-empty');
-					$(this).removeClass('js_rm_z').addClass('js_add_z');
+					that.removeClass('js_rm_z').addClass('js_add_z');
 				}
 			}
 		})

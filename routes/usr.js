@@ -3,6 +3,7 @@ var dateFormat = require('dateformat');
 var router = express.Router();
 
 /* GET users listing. */
+//个人信息
 router.get('/', function(req, res, next) {
 	//console.log(req.originalUrl,req.params,req.path,req.query);
 	Aho(req,res,next);
@@ -12,7 +13,7 @@ router.get('/', function(req, res, next) {
 	//var id=req.originalUrl.split('/')[2];
 	//if(id==''||id==undefined){
 	var id=req.session.user['_id'];	
-  var usr=req.seeion.user;
+    var usr=req.seeion.user;
 	//}
 	var db_user=db.get('user');
 	var db_msg=db.get('message');
@@ -93,6 +94,7 @@ router.get('/', function(req, res, next) {
 	})
 });
 
+//个人信息
 router.get('/:id', function(req, res, next) {
 	//console.log(req.originalUrl,req.params,req.path,req.query);
 	Aho(req,res,next);

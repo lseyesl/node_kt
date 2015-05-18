@@ -15,6 +15,8 @@ router.get('/', function(req, res, next) {
 	var db_copy=db.get('copy');
 	var wb_atten=null;
 	//var wb_tmp=null;
+	//获取所有消息
+	//获取自己的所有消息
 	db_msg.find({"Uid":req.session.user['_id']},function(err,docs){
 		if(err){
 			res.send("读取失败，请稍后再试");
@@ -26,6 +28,8 @@ router.get('/', function(req, res, next) {
 			console.log('本人的消息',docs);
 			wb_list=docs;
 			//console.log(wb_tmp);
+			//关注表获取内容
+			//获取自己关注过的人的信息
 			db_attention.find({"Uid":req.session.user['_id']},function(err,docs){
 				if(err){
 					res.send("读取失败，请稍后再试");
@@ -200,6 +204,7 @@ router.post('/publish',function(req, res, next){
 		"Mlike":Mlike,
 		"Mdatetime":Mdatetime
 	};
+	//把发布的信息存到消息表中
 	message.insert(obj,function(err,doc){
 		if(err){
 			res.send({type:"失败",value:null});
@@ -218,6 +223,7 @@ router.post('/addz',function(req, res, next){
 	var Uid=req.session.user._id;
 	var db_Like=db.get('like');
 	var db_msg=db.get('message');
+	//把点赞的消息存到表中，再消息表更新
 	db_Like.insert({"Uid":Uid,"Mid":Mid,"CUid":CUid},function(err,docs){
 		if(err){
 			res.send('失败');	
